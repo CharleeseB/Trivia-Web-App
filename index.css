@@ -1,0 +1,63 @@
+
+.pic-container{
+    width: 90vw;
+    margin: 2rem auto;
+    background-color:orange;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 1rem;
+    flex-wrap: wrap;
+    height: 15vh;
+
+}
+.countdown{
+    border: 2px solid;
+    background-color:white;
+    font-size: 50px;
+    height: 10% ;
+    width: 6%;
+    margin: 0;
+    
+}
+.pic-box{
+    margin-right: 2px;
+    align-items: center;
+    border: 4px;
+}
+.question{
+    height:50px ;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: fantasy;
+    font-size: 35px;
+    overflow: auto;
+    justify-content: space-evenly;
+    font-style: italic;
+    
+    
+}
+.question-container{
+    background-color:green;
+    height:350px;
+    overflow: auto;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100vw;
+
+}
+.answer{
+    display: flex;
+    justify-content: space-around;
+    background-color: coral;
+    height:20px ;
+    margin-top: 10px;
+    width: 30%;
+    height:30% ;  
+    
+}
