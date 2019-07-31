@@ -1,5 +1,5 @@
 
-.pic-container{
+.pic-container {
     width: 90vw;
     margin: 2rem auto;
     background-color:orange;
@@ -11,7 +11,7 @@
     height: 15vh;
 
 }
-.countdown{
+.timer{
     border: 2px solid;
     background-color:white;
     font-size: 50px;
@@ -25,7 +25,10 @@
     align-items: center;
     border: 4px;
 }
-.question{
+.Question{
+    border: 2px solid;
+    background-color: chartreuse;
+    border-width: 4px;
     height:50px ;
     width: 100vw;
     display: flex;
@@ -36,6 +39,10 @@
     overflow: auto;
     justify-content: space-evenly;
     font-style: italic;
+    font-family: fantasy;
+    font-size: 24px;
+    overflow: auto;
+    justify-content: space-evenly;
     
     
 }
@@ -59,5 +66,4 @@
     margin-top: 10px;
     width: 30%;
     height:30% ;  
-    
 }
