@@ -1,3 +1,4 @@
+
 function countdownTimer(){
 let timeleft = 10;
      let downloadTimer = setInterval(function(){
@@ -54,61 +55,56 @@ countdownTimer();
 //                   </ul>
 //               </div>
 //           </section>                     
+
       
+      const getQuestion = () => {
+        return fetch(url)
+        .then(function(response) {
+          return response.json();
+        }).then(function(returnjson){
+          let question1 = returnjson.results[0];
+          question1.incorrect_answers.push(question1.correct_answer);
+          question1.answers = question1.incorrect_answers;
+          delete question1.incorrect_answers;
+          console.log(question1);
+          return question1;
+        });
+      };
+      function updateButtons(question){
+        question.answers.forEach((answer,index)=>{
+          let id = "answer-"+ index;
+          document.getElementById(id).innerHTML=answer;
+          console.log(answer, index)
+        })
+      }
+      function updateQuestion(question){
+        document.getElementById("question").innerHTML= question.question;
+      }
       
-//               `;
-//     };
-//     new1.forEach(user => {
-//       createDiv(user);
-//     });
-//     const boxx = document.createElement("div");
-//     const letters = [
-//       "A",
-//       "B",
-//       "C",
-//       "D",
-//       "E",
-//       "F",
-//       "G",
-//       "H",
-//       "I",
-//       "J",
-//       "K",
-//       "L",
-//       "M",
-//       "N",
-//       "O",
-//       "P",
-//       "Q",
-//       "R",
-//       "S",
-//       "T",
-//       "U",
-//       "V",
-//       "W",
-//       "X",
-//       "Y",
-//       "Z",
-//       "Reset"
-//     ];
-//     document.body.insertBefore(boxx, container);
-//     boxx.classList.add("look");
-  
-//     const chosen = letters.map(letter => {
-//       return `<button class = "target">${letter}</button>`;
-//     });
-//     chosen.forEach(button => {
-//       boxx.innerHTML += button;
-//     });
-//     const choose = e => {
-//       // When a button is pressed the list is filtered by lastnames beginning with that letter
-//       let letterChose = e.target.innerHTML;
-//       if (letterChose === user.name.last[0].toUpperCase()) {
-//           return
-//       }
-//     };
-//     const selected = document.querySelectorAll(".target");
-//     selected.forEach(letter => {
-//       letter.addEventListener("click", choose);
-//     });
-//   });
+      function randNum (low,hi){
+        return Math.floor(Math.random() * hi) + low; 
+      };
+      function nextQuestion(){
+        getQuestion().then(function(response){
+        question = response;
+        updateButtons(response)
+        updateQuestion(response)
+      });
+      };
+      function clickHandler(e){
+        const answerSelected = e.srcElement.innerHTML;
+        console.log(answerSelected);
+        if (answerSelected === question.correct_answer){
+          alert("correct")
+        }
+        console.log(question)
+      }
+
+      function setup(){
+        for (let i = 0; i<4;i++){
+          document.getElementById("answer-"+ i).addEventListener("click", clickHandler)
+        }
+      }
+      setup()
+      nextQuestion()
+    });

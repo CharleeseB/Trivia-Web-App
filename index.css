@@ -1,3 +1,4 @@
+
 .pic-container {
     width: 100%;
     margin: 2rem auto;
@@ -104,6 +105,12 @@ aside{
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    font-family: fantasy;
+    font-size: 35px;
+    overflow: auto;
+    justify-content: space-evenly;
+    font-style: italic;
     font-family: fantasy;
     font-size: 150%;
     overflow: auto;
