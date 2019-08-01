@@ -1,3 +1,31 @@
+let correct = 0;
+let incorrect = 0;
+
+function start(){
+      console.log('you wanna play a game?');
+      $("hidden-container2").show();
+      $("header").hide();
+      countdownTimer();
+      document.getElementById("mainCard").innerHTML = "correct: " + correct;
+};
+// function startNew(){
+//   document.getElementById("mainCard").innerHTML = "correct: " + correct;
+//   countdownTimer();
+
+// }
+  
+    // setTimeout(function(){
+    // nextQuestion
+    // }, delay);
+    // startNew();}
+
+
+// function answerCounter(){
+//   let correct = 0;
+//   let incorrect = 0;
+  
+// }
+
 
 function countdownTimer(){
 let timeleft = 10;
@@ -6,7 +34,7 @@ let timeleft = 10;
       timeleft -= 1;
       if(timeleft < 0){
         clearInterval(downloadTimer);
-        document.getElementById("countdown").innerHTML = "Finished"
+        document.getElementById("countdown").innerHTML = "Moving On.."
       }
     }, 1000);
 }
@@ -24,9 +52,16 @@ const getSetup = () => {
   }
   getSetup();
 
+// function hideGame(){
+//   startGame.addEventListener("click",function(i){
+//     console.log("glakjfd")
+//     hideQ.style.display === "none";
+//     }
+//   });
+  
+
 //on game start
 //firstQuestion();
-countdownTimer();
 const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&type=multiple";
       const getQuestion = () => {
         return fetch(url)
@@ -68,12 +103,21 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
       });
       };
       function clickHandler(e){
+        let correct = 0;
+        let incorrect = 0;
         const answerSelected = e.srcElement.innerHTML;
         console.log(answerSelected);
         if (answerSelected === question.correct_answer){
           document.getElementById("answer-3").style.backgroundColor = "green";
           alert("correct")
+          correct += 1;
         }
+        else{
+          incorrect += 1;
+        }
+        document.getElementById("mainCard").innerHTML = "correct: " + correct;
+        console.log(correct)
+        
         else{
           document.getElementById("answer-0").style.backgroundColor = "red";
           document.getElementById("answer-1").style.backgroundColor = "red";
@@ -91,4 +135,3 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
       }
       setup();
       nextQuestion();
-    
