@@ -10,6 +10,19 @@ let timeleft = 10;
       }
     }, 1000);
 }
+const getSetup = () => {
+  const jokeUrl = "https://official-joke-api.appspot.com/random_joke";
+    return fetch(jokeUrl)
+    .then(function(response){
+      return response.json();
+    }).then(function(returnjson){
+      let setup1 = returnjson.setup;
+      let punchline = returnjson.punchline;
+      document.querySelector(".pic-box").innerHTML= setup1;
+      console.log(setup1)
+    })
+  }
+  getSetup();
 
 //on game start
 //firstQuestion();
@@ -44,6 +57,11 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
       };
       function nextQuestion(){
         getQuestion().then(function(response){
+          const preAnswer = document.querySelectorAll(".answer");
+          preAnswer.forEach(box =>{
+          box.style.backgroundColor = "black";
+          })
+          
         question = response;
         updateButtons(response)
         updateQuestion(response)
@@ -53,7 +71,14 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
         const answerSelected = e.srcElement.innerHTML;
         console.log(answerSelected);
         if (answerSelected === question.correct_answer){
+          document.getElementById("answer-3").style.backgroundColor = "green";
           alert("correct")
+        }
+        else{
+          document.getElementById("answer-0").style.backgroundColor = "red";
+          document.getElementById("answer-1").style.backgroundColor = "red";
+          document.getElementById("answer-2").style.backgroundColor = "red";
+          document.getElementById("answer-3").style.backgroundColor = "green";
         }
         console.log(question)
       }
@@ -62,6 +87,7 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
         for (let i = 0; i<4;i++){
           document.getElementById("answer-"+ i).addEventListener("click", clickHandler)
         }
+        
       }
       setup();
       nextQuestion();
