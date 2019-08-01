@@ -1,0 +1,150 @@
+
+.pic-container {
+    width: 100%;
+    margin: 2rem auto;
+    background-color:slategray;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 1rem;
+    flex-wrap: wrap;
+    height: 15%;
+    box-shadow: 5px 10px 18px #888888;
+
+}
+header{
+    height: 300px;
+}
+.start-container{
+    display: flex;
+    background-color: yellow;
+    width: 100%;
+    height: 500px;
+}
+.title{
+    position: absolute;
+    top: 200px;
+    left: 45%; 
+    font-size: 30px;
+    color: steelblue;
+    border: 2px solid slategrey;
+    box-shadow: 5px 10px 18px #888888;
+
+}
+.startGame{
+    position: absolute;
+    top: 250px;
+    left: 50%; 
+    text-align:center;
+    justify-items: center;
+    font-size: 30px;
+    color: steelblue;
+    border: 2px solid slategrey;
+    
+}
+
+#countdown{
+    font-size: 20px;
+    display: inline-block;
+    margin: 0 auto;
+}
+body{
+    background-color: black;
+}
+
+.timer{
+    position: absolute;
+    top: 50px;
+    border: 2px solid;
+    border-radius: 100px;
+    background-color:burlywood;
+    font-size: 25px;
+    height: 10px ;
+    width: 150px;
+    top: 350px;
+    padding: 25px;
+    text-align: center;
+    word-wrap: break-word;
+}
+.mainCard{
+    border-radius: 100px;
+    position: absolute;
+    text-align: relative;
+    align-content: center;
+    word-wrap: break-word;
+    border: 2px solid;
+    word-wrap: break-word;
+    background-color: burlywood;
+    font-size: 25px;
+    height: 10px ;
+    width: 150px;
+    right: 15px;
+    top: 350px;
+    padding: 25px;
+    margin: 0 auto;
+}
+
+aside{
+    width: 100%;
+    background-color: slategrey;
+    padding: 75px;
+    box-shadow: 5px 10px 18px #888888;
+    text-align: center;
+}
+.pic-box{
+    margin-right: 2px;
+    align-items: center;
+    border: 4px;
+    border: 2px solid black;
+}
+.question{
+    border: 10px solid black;
+    background-color: slategray;
+    border-width: 0px;
+    height: 75px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: fantasy;
+    font-size: 35px;
+    overflow: auto;
+    justify-content: space-evenly;
+    font-style: italic;
+    font-family: fantasy;
+    font-size: 150%;
+    overflow: auto;
+    text-align: center;
+    justify-content: center;
+    border-radius: 5px;
+    word-wrap: break-word;
+    border-style: 5px outset black;
+}
+.question-container{
+    background-color:slategray;
+    height:350px;
+    word-wrap: break-word;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 4px;
+    border-style: 5px outset black;
+    box-shadow: 5px 10px 18px #888888;
+
+}
+.answer{
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    color: burlywood;
+    height: 20px;
+    top: 30px;
+    width: 30%;
+    height: 30%;  
+    border-radius: 12px;
+    align-content: center;
+    border-style: 5px outset black;
+}
