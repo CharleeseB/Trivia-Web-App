@@ -46,11 +46,22 @@ const getSetup = () => {
     }).then(function(returnjson){
       let setup1 = returnjson.setup;
       let punchline = returnjson.punchline;
-      document.querySelector(".pic-box").innerHTML= setup1;
-      console.log(setup1)
+
+
+      document.querySelector(".pic-box").innerHTML= setup1+ " " + punchline;
+      localStorage.setItem("punchline", returnjson.punchline);
+      const jsonPunchline = () =>{localStorage.parse("punchline");
+        const storedPunchline = localStorage.getItem("punchline");
+        alert("storedPunchline");
+    }
+      console.log(setup1);
+      
     })
+    
   }
+  
   getSetup();
+
 
 // function hideGame(){
 //   startGame.addEventListener("click",function(i){
@@ -58,8 +69,6 @@ const getSetup = () => {
 //     hideQ.style.display === "none";
 //     }
 //   });
-  
-
 //on game start
 //firstQuestion();
 const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&type=multiple";
@@ -83,6 +92,11 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
           console.log(answer, index);
         })
       }
+      
+      
+      
+      
+      
       function updateQuestion(question){
         document.getElementById("question").innerHTML= question.question;
       }
@@ -101,6 +115,7 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
         updateButtons(response)
         updateQuestion(response)
       });
+
       };
       function clickHandler(e){
         let correct = 0;
@@ -108,6 +123,11 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
         const answerSelected = e.srcElement.innerHTML;
         console.log(answerSelected);
         if (answerSelected === question.correct_answer){
+
+        }
+}
+      
+
           document.getElementById("answer-3").style.backgroundColor = "green";
           alert("correct")
           correct += 1;
@@ -127,6 +147,7 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
         console.log(question)
       }
 
+
       function setup(){
         for (let i = 0; i<4;i++){
           document.getElementById("answer-"+ i).addEventListener("click", clickHandler)
@@ -134,4 +155,12 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
         
       }
       setup();
+      
       nextQuestion();
+
+const storedPunchline = localStorage.getItem("punchline");
+
+
+function getPunchline (){
+ return jsonPunchline;
+}
