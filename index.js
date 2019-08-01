@@ -10,7 +10,30 @@ let timeleft = 10;
       }
     }, 1000);
 }
+const getSetup = () => {
+  const jokeUrl = "https://official-joke-api.appspot.com/random_joke";
+    return fetch(jokeUrl)
+    .then(function(response){
+      return response.json();
+    }).then(function(returnjson){
+      let setup1 = returnjson.setup;
+      let punchline = returnjson.punchline;
 
+      document.querySelector(".pic-box").innerHTML= setup1+ " " + punchline;
+      localStorage.setItem("punchline", returnjson.punchline);
+      const jsonPunchline = () =>{localStorage.parse("punchline");
+        const storedPunchline = localStorage.getItem("punchline");
+        alert("storedPunchline");
+    }
+      console.log(setup1);
+      
+    })
+    
+  }
+  
+  getSetup();
+    
+  
 //on game start
 //firstQuestion();
 countdownTimer();
@@ -35,6 +58,11 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
           console.log(answer, index);
         })
       }
+      
+      
+      
+      
+      
       function updateQuestion(question){
         document.getElementById("question").innerHTML= question.question;
       }
@@ -44,19 +72,21 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
       };
       function nextQuestion(){
         getQuestion().then(function(response){
-        question = response;
-        updateButtons(response)
-        updateQuestion(response)
-      });
+          question = response;
+          updateButtons(response)
+          updateQuestion(response)
+        });
       };
       function clickHandler(e){
         const answerSelected = e.srcElement.innerHTML;
         console.log(answerSelected);
         if (answerSelected === question.correct_answer){
-          alert("correct")
+        //   document.querySelector(".pic-box").innerHTML= jsonPunchline;
+        //   answerSelected.style.backgroundColor ="green";
+        // } else {getElementById("answer-0").style.backgroundColor = "red";
         }
-        console.log(question)
-      }
+}
+      
 
       function setup(){
         for (let i = 0; i<4;i++){
@@ -64,5 +94,11 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
         }
       }
       setup();
+      
       nextQuestion();
-    
+const storedPunchline = localStorage.getItem("punchline");
+
+
+function getPunchline (){
+ return jsonPunchline;
+}
