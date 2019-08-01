@@ -19,6 +19,7 @@ const getSetup = () => {
       let setup1 = returnjson.setup;
       let punchline = returnjson.punchline;
 
+
       document.querySelector(".pic-box").innerHTML= setup1+ " " + punchline;
       localStorage.setItem("punchline", returnjson.punchline);
       const jsonPunchline = () =>{localStorage.parse("punchline");
@@ -72,26 +73,44 @@ const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&
       };
       function nextQuestion(){
         getQuestion().then(function(response){
-          question = response;
-          updateButtons(response)
-          updateQuestion(response)
-        });
+          const preAnswer = document.querySelectorAll(".answer");
+          preAnswer.forEach(box =>{
+          box.style.backgroundColor = "black";
+          })
+          
+        question = response;
+        updateButtons(response)
+        updateQuestion(response)
+      });
+
       };
       function clickHandler(e){
         const answerSelected = e.srcElement.innerHTML;
         console.log(answerSelected);
         if (answerSelected === question.correct_answer){
-        //   document.querySelector(".pic-box").innerHTML= jsonPunchline;
-        //   answerSelected.style.backgroundColor ="green";
-        // } else {getElementById("answer-0").style.backgroundColor = "red";
+
         }
 }
       
+
+          document.getElementById("answer-3").style.backgroundColor = "green";
+          alert("correct")
+        }
+        else{
+          document.getElementById("answer-0").style.backgroundColor = "red";
+          document.getElementById("answer-1").style.backgroundColor = "red";
+          document.getElementById("answer-2").style.backgroundColor = "red";
+          document.getElementById("answer-3").style.backgroundColor = "green";
+        }
+        console.log(question)
+      }
+
 
       function setup(){
         for (let i = 0; i<4;i++){
           document.getElementById("answer-"+ i).addEventListener("click", clickHandler)
         }
+        
       }
       setup();
       
