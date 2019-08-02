@@ -36,66 +36,45 @@ function listen(){
     $("hidden-container2").hide();
     }
 }
+  document.getElementById("mainCard").innerHTML = "correct: " + correct;
+}
 
-// function startNew(){
-//   document.getElementById("mainCard").innerHTML = "correct: " + correct;
-//   countdownTimer();
-
-// }
-  
-    // setTimeout(function(){
-    // nextQuestion
-    // }, delay);
-    // startNew();}
-
-
-// function answerCounter(){
-//   let correct = 0;
-//   let incorrect = 0;
-  
-// }
-
-
-
-
-      // return downloadTimer;
-      // return timeleft;
+function countdownTimer() {
+  let timeleft = 60;
+  let downloadTimer = setInterval(function() {
+    document.getElementById("countdown").innerHTML = timeleft + " seconds";
+    timeleft -= 1;
+    if (timeleft < 0) {
+      clearInterval(downloadTimer);
+      document.getElementById("countdown").innerHTML = "Game Over!";
+    }
+  }, 1000);
+}
 
 const getSetup = () => {
   const jokeUrl = "https://official-joke-api.appspot.com/random_joke";
-    return fetch(jokeUrl)
-    .then(function(response){
+  return fetch(jokeUrl)
+    .then(function(response) {
       return response.json();
-    }).then(function(returnjson){
+    })
+    .then(function(returnjson) {
       let setup1 = returnjson.setup;
       let punchline = returnjson.punchline;
 
-
-
-      document.querySelector(".pic-box").innerHTML= setup1+ " " + punchline;
+      document.querySelector(".pic-box").innerHTML = setup1 + " " + punchline;
       localStorage.setItem("punchline", returnjson.punchline);
-      const jsonPunchline = () =>{localStorage.parse("punchline");
+      const jsonPunchline = () => {
+        localStorage.parse("punchline");
         const storedPunchline = localStorage.getItem("punchline");
         alert("storedPunchline");
+
     }
-      console.log(setup1);
-    })
+    });
   }
   
   getSetup();
-  // listen();
 
 
-
-// function hideGame(){
-//   startGame.addEventListener("click",function(i){
-//     console.log("glakjfd")
-//     hideQ.style.display === "none";
-//     }
-//   });
-
-//on game start
-//firstQuestion();
 const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&type=multiple";
 
 function getQuestion(){
@@ -112,55 +91,67 @@ function getQuestion(){
   });
 };
 
+getSetup();
+
 
 function updateButtons(question){
   question.answers.forEach((answer,index)=>{
     let id = "answer-"+ index;
     document.getElementById(id).innerHTML=answer;
-    console.log(answer, index);
-  })
+  });
+}
+const url =
+  "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&type=multiple";
+
+function getQuestion() {
+  return fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(returnjson) {
+      let question1 = returnjson.results[0];
+      question1.incorrect_answers.push(question1.correct_answer);
+      question1.answers = question1.incorrect_answers;
+      delete question1.incorrect_answers;
+      return question1;
+    });
 }
 
-function updateQuestion(question){
-  document.getElementById("question").innerHTML= window.question.question;
-  // countdownTimer();
-} 
+function updateButtons(question) {
+  question.answers.forEach((answer, index) => {
+    let id = "answer-" + index;
+    document.getElementById(id).innerHTML = answer;
+  });
+}
+document.getElementById("answer-3").style.order = "0";
+document.getElementById("answer-0").style.order = "1";
+document.getElementById("answer-1").style.order = "-1";
+document.getElementById("answer-2").style.order = "2";
+function updateQuestion(question) {
+  document.getElementById("question").innerHTML = window.question.question;
+}
 
-
-function randNum (low,hi){
-  return Math.floor(Math.random() * hi) + low; 
-};
-
-
-function nextQuestion(){
-  getQuestion().then(function(response){
+function nextQuestion() {
+  getQuestion().then(function(response) {
     const preAnswer = document.querySelectorAll(".answer");
-    preAnswer.forEach(box =>{
+    preAnswer.forEach(box => {
       box.style.backgroundColor = "black";
-    })
+    });
     question = response;
     updateButtons(response)
     updateQuestion(response)
     listen();
   });
-};
+}
 
 
 function clickHandler(e){
   userScore = correct + incorrect;
-  // for (let incorrect = 0; incorrect < 10; incorrect ++){
-  //   console.log(incorrect);
-  const answerSelected = e.srcElement.innerHTML;
-  // clearInterval(window.countdownTimer);
-  // console.log(answerSelected);
-  // console.log(window.question.correct_answer)
-  
+  const answerSelected = e.srcElement.innerHTML; 
   if (answerSelected === question.correct_answer){
     document.getElementById("answer-3").style.backgroundColor = "green";
     correct ++;
-    console.log(correct)
-    console.log(userScore)
-    nextQuestion();
+//     nextQuestion();
   }
   else{
     incorrect ++ ;
@@ -168,31 +159,17 @@ function clickHandler(e){
     document.getElementById("answer-1").style.backgroundColor = "red";
     document.getElementById("answer-2").style.backgroundColor = "red";
     document.getElementById("answer-3").style.backgroundColor = "green";
-    nextQuestion();
-    console.log(incorrect)
-    console.log(userScore)
+//     nextQuestion();
   }
+  setTimeout(nextQuestion, 1000);
   document.getElementById("mainCard").innerHTML = "correct: " + correct;
   return userScore;
-
-  // currentScore = correct - incorrect;
-  // clearInterval(window.countdownTimer)
 }
 function setup(){
     for (let i = 0; i<4;i++){
       document.getElementById("answer-"+ i).addEventListener("click", clickHandler)
     }
-    
   }
-
-
-  // function movingOn(timeleft){
-  //   if (timeleft < 0){
-  //   nextQuestion()};
-  // }
-
-  // setup();
-  // nextQuestion();
 
   const storedPunchline = localStorage.getItem("punchline");
 
@@ -200,4 +177,14 @@ function setup(){
     return jsonPunchline;
   }
 
-// }
+}
+function setup() {
+  document
+    .querySelector(".question-container")
+    .addEventListener("click", clickHandler);
+}
+
+setup();
+nextQuestion();
+
+
