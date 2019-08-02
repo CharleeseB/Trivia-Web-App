@@ -161,7 +161,6 @@ function setup(){
     return jsonPunchline;
   }
 
-}
 function setup() {
   document
     .querySelector(".question-container")
