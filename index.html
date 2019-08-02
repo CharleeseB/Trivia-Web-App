@@ -8,46 +8,48 @@
     <link rel="stylesheet" href="index.css"> 
     
 </head> 
-<header>
-<div class="start-container">
-        <div id="title">Name of Game!</div>
-        <div id="startGame" onclick="start()" value="startbutton">Start!<div>
-        </div>
-</header>
-
-<hidden-container2>
-<aside>
-    <div class="timer">
-        <p id ='countdown'></p>
-    </div>
-    <div id="mainCard"></div>
-</aside>
-</header>
-<section>
-    <div class="pic-container">
-
-    <div class="pic-box"></div>
-    
-
-    </div>
-</section>
 <body>
-    <div id ="question" class="question"></div>
-    <div class="question-container">
-        <div id="answer-0" class="answer"></div>
-        <div id="answer-1" class="answer"></div>
-        <div id="answer-2" class="answer"></div>
-        <div id="answer-3" class="answer"></div>
-    </div>
-<aftergame>
-    <div class="scorepanel">
-    <div class="high scores"></div>
-    <div class="user"></div>
-    <!-- input button for user to save score -->
-    </div>
-</aftergame>
-</hidden-container2>
+    <header>
+        <div class="start-container">
+            <div id="title">Name of Game!</div>
+            <div id="userName" input type="text" value="your name here">Enter your name: </div>
+            <div id="startGame" value="startbutton">Start!<div>
+            
+            </div>
+        </header>
+        
+        <hidden-container2>
+            <aside>
+                <div class="timer">
+                    <p id ='countdown'></p>
+                </div>
+                <div id="mainCard"></div>
+            </aside>
+        </header>
+        <section>
+            <div class="pic-container">
+                
+                <div class="pic-box">Joke</div>
+                
+                
+            </div>
+        </section>
+        <div id ="question" class="question"></div>
+        <div class="question-container">
+            <div id="answer-0" class="answer"></div>
+            <div id="answer-1" class="answer"></div>
+            <div id="answer-2" class="answer"></div>
+            <div id="answer-3" class="answer"></div>
+        </div>
+    </hidden-container2>
+        <aftergame>
+            <div class="scorepanel">
+                <div class="high scores"></div>
+                <div class="user"></div>
+                <!-- input button for user to save score -->
+            </div>
+        </aftergame>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src ="index.js"></script>
 </body>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-<script src ="index.js"></script>
 </html>

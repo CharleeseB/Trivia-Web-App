@@ -1,15 +1,41 @@
+// const TriviaApp = () => {
+
 let correct = 0;
 let incorrect = 0;
+let userScore = correct + incorrect;
 
-async function start() {
-  $("hidden-container2").show();
-  $("header").hide();
-  window.question = await getQuestion();
-  countdownTimer();
-  // setup();
-  updateButtons(window.question);
-  updateQuestion(window.question);
 
+document.querySelector('#startGame').addEventListener('click', start);
+
+const countdownTimer = () => {
+  let timeleft = 10;
+  window.countdownTimer = setInterval(function(){
+    document.getElementById("countdown").innerHTML = timeleft + " seconds" ;
+    timeleft -= 1;
+    if(timeleft < 0){
+      clearInterval(window.countdownTimer);
+      document.getElementById("countdown").innerHTML = "Times Up!"
+      timeleft = 10;
+    }
+  }, 1000);
+}
+
+async function start(){
+      console.log('you wanna play a game?');
+      $("hidden-container2").show();
+      $("header").hide();
+      window.question = await getQuestion();
+      countdownTimer();
+      window.userScore = await setup();
+      updateButtons(window.question);
+      updateQuestion(window.question);
+      document.getElementById("mainCard").innerHTML = "correct: " + correct;
+};
+function listen(){
+  if(userScore === 10){
+    $("hidden-container2").hide();
+    }
+}
   document.getElementById("mainCard").innerHTML = "correct: " + correct;
 }
 
@@ -24,6 +50,7 @@ function countdownTimer() {
     }
   }, 1000);
 }
+
 const getSetup = () => {
   const jokeUrl = "https://official-joke-api.appspot.com/random_joke";
   return fetch(jokeUrl)
@@ -40,12 +67,39 @@ const getSetup = () => {
         localStorage.parse("punchline");
         const storedPunchline = localStorage.getItem("punchline");
         alert("storedPunchline");
-      };
+
+    }
     });
+  }
+  
+  getSetup();
+
+
+const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&type=multiple";
+
+function getQuestion(){
+  return fetch(url)
+  .then(function(response) {
+    return response.json();
+  }).then(function(returnjson){
+    let question1 = returnjson.results[0];
+    question1.incorrect_answers.push(question1.correct_answer);
+    question1.answers = question1.incorrect_answers;
+    delete question1.incorrect_answers;
+    console.log(question1);
+    return question1;
+  });
 };
 
 getSetup();
 
+
+function updateButtons(question){
+  question.answers.forEach((answer,index)=>{
+    let id = "answer-"+ index;
+    document.getElementById(id).innerHTML=answer;
+  });
+}
 const url =
   "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&type=multiple";
 
@@ -84,26 +138,45 @@ function nextQuestion() {
       box.style.backgroundColor = "black";
     });
     question = response;
-    updateButtons(response);
-    updateQuestion(response);
+    updateButtons(response)
+    updateQuestion(response)
+    listen();
   });
 }
 
-function clickHandler(e) {
-  for (let correct = 0; correct < 1; correct++);
-  const answerSelected = e.srcElement.innerHTML;
-  if (answerSelected === window.question.correct_answer) {
+
+function clickHandler(e){
+  userScore = correct + incorrect;
+  const answerSelected = e.srcElement.innerHTML; 
+  if (answerSelected === question.correct_answer){
     document.getElementById("answer-3").style.backgroundColor = "green";
-    correct++;
-  } else {
+    correct ++;
+//     nextQuestion();
+  }
+  else{
+    incorrect ++ ;
     document.getElementById("answer-0").style.backgroundColor = "red";
     document.getElementById("answer-1").style.backgroundColor = "red";
     document.getElementById("answer-2").style.backgroundColor = "red";
     document.getElementById("answer-3").style.backgroundColor = "green";
+//     nextQuestion();
   }
   setTimeout(nextQuestion, 1000);
   document.getElementById("mainCard").innerHTML = "correct: " + correct;
-  console.log(correct);
+  return userScore;
+}
+function setup(){
+    for (let i = 0; i<4;i++){
+      document.getElementById("answer-"+ i).addEventListener("click", clickHandler)
+    }
+  }
+
+  const storedPunchline = localStorage.getItem("punchline");
+
+  function getPunchline(){
+    return jsonPunchline;
+  }
+
 }
 function setup() {
   document
@@ -114,8 +187,4 @@ function setup() {
 setup();
 nextQuestion();
 
-// const storedPunchline = localStorage.getItem("punchline");
 
-// function getPunchline() {
-//   return jsonPunchline;
-// }
