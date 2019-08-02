@@ -1,18 +1,42 @@
+// const TriviaApp = () => {
+
 let correct = 0;
 let incorrect = 0;
+let userScore = correct + incorrect;
+
+
+document.querySelector('#startGame').addEventListener('click', start);
+
+const countdownTimer = () => {
+  let timeleft = 10;
+  window.countdownTimer = setInterval(function(){
+    document.getElementById("countdown").innerHTML = timeleft + " seconds" ;
+    timeleft -= 1;
+    if(timeleft < 0){
+      clearInterval(window.countdownTimer);
+      document.getElementById("countdown").innerHTML = "Times Up!"
+      timeleft = 10;
+    }
+  }, 1000);
+}
 
 async function start(){
       console.log('you wanna play a game?');
       $("hidden-container2").show();
       $("header").hide();
-      let question = await getQuestion();
+      window.question = await getQuestion();
       countdownTimer();
-      setup();
-      updateButtons(question);
-      updateQuestion(question);
-      
+      window.userScore = await setup();
+      updateButtons(window.question);
+      updateQuestion(window.question);
       document.getElementById("mainCard").innerHTML = "correct: " + correct;
 };
+function listen(){
+  if(userScore === 10){
+    $("hidden-container2").hide();
+    }
+}
+
 // function startNew(){
 //   document.getElementById("mainCard").innerHTML = "correct: " + correct;
 //   countdownTimer();
@@ -32,17 +56,11 @@ async function start(){
 // }
 
 
-function countdownTimer(){
-let timeleft = 10;
-    let downloadTimer = setInterval(function(){
-      document.getElementById("countdown").innerHTML = timeleft + " seconds" ;
-      timeleft -= 1;
-      if(timeleft < 0){
-        clearInterval(downloadTimer);
-        document.getElementById("countdown").innerHTML = "Moving On.."
-      }
-    }, 1000);
-}
+
+
+      // return downloadTimer;
+      // return timeleft;
+
 const getSetup = () => {
   const jokeUrl = "https://official-joke-api.appspot.com/random_joke";
     return fetch(jokeUrl)
@@ -61,12 +79,11 @@ const getSetup = () => {
         alert("storedPunchline");
     }
       console.log(setup1);
-      
     })
-    
   }
   
   getSetup();
+  // listen();
 
 
 
@@ -96,7 +113,6 @@ function getQuestion(){
 };
 
 
-
 function updateButtons(question){
   question.answers.forEach((answer,index)=>{
     let id = "answer-"+ index;
@@ -106,7 +122,8 @@ function updateButtons(question){
 }
 
 function updateQuestion(question){
-  document.getElementById("question").innerHTML= question.question;
+  document.getElementById("question").innerHTML= window.question.question;
+  // countdownTimer();
 } 
 
 
@@ -124,46 +141,63 @@ function nextQuestion(){
     question = response;
     updateButtons(response)
     updateQuestion(response)
+    listen();
   });
 };
 
 
 function clickHandler(e){
-  let correct = 0;
-  let incorrect = 0;
+  userScore = correct + incorrect;
+  // for (let incorrect = 0; incorrect < 10; incorrect ++){
+  //   console.log(incorrect);
   const answerSelected = e.srcElement.innerHTML;
-  console.log(answerSelected);
+  // clearInterval(window.countdownTimer);
+  // console.log(answerSelected);
+  // console.log(window.question.correct_answer)
+  
   if (answerSelected === question.correct_answer){
     document.getElementById("answer-3").style.backgroundColor = "green";
-    alert("correct")
-    correct += 1;
+    correct ++;
+    console.log(correct)
+    console.log(userScore)
+    nextQuestion();
   }
   else{
-    // document.getElementById("answer-0").style.backgroundColor = "red";
-    // document.getElementById("answer-1").style.backgroundColor = "red";
-    // document.getElementById("answer-2").style.backgroundColor = "red";
-    document.getElementById("answer-3").style.backgroundColor = "red";
+    incorrect ++ ;
+    document.getElementById("answer-0").style.backgroundColor = "red";
+    document.getElementById("answer-1").style.backgroundColor = "red";
+    document.getElementById("answer-2").style.backgroundColor = "red";
+    document.getElementById("answer-3").style.backgroundColor = "green";
+    nextQuestion();
+    console.log(incorrect)
+    console.log(userScore)
   }
   document.getElementById("mainCard").innerHTML = "correct: " + correct;
-  console.log(correct)
-  
-  document.getElementById("mainCard").innerHTML = "correct: " + correct;
+  return userScore;
 
-  console.log(correct)
+  // currentScore = correct - incorrect;
+  // clearInterval(window.countdownTimer)
 }
 function setup(){
     for (let i = 0; i<4;i++){
       document.getElementById("answer-"+ i).addEventListener("click", clickHandler)
     }
+    
   }
 
 
-  setup();
-  nextQuestion();
+  // function movingOn(timeleft){
+  //   if (timeleft < 0){
+  //   nextQuestion()};
+  // }
+
+  // setup();
+  // nextQuestion();
 
   const storedPunchline = localStorage.getItem("punchline");
 
-  function getPunchline (){
+  function getPunchline(){
     return jsonPunchline;
   }
 
+// }

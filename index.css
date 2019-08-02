@@ -22,10 +22,13 @@ p{
     flex-wrap: wrap;
     height: 7.5%;
     box-shadow: 5px 10px 18px #888888;
-
 }
 hidden-container2{
     display: none;
+    background:
+            linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
 }  
 .startsection{
     height: 300px;
@@ -33,9 +36,11 @@ hidden-container2{
 .start-container{
     display: flex;
     background-color: yellow;
+    background: url("photos/camera.jpg");
     width: 1500px;
     height: 750px;
-}
+    /* background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); */
+    }
 #title{
     display: flex;
     align-items: center;
