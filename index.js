@@ -7,19 +7,6 @@ let userScore = correct + incorrect;
 
 document.querySelector('#startGame').addEventListener('click', start);
 
-const countdownTimer = () => {
-  let timeleft = 10;
-  window.countdownTimer = setInterval(function(){
-    document.getElementById("countdown").innerHTML = timeleft + " seconds" ;
-    timeleft -= 1;
-    if(timeleft < 0){
-      clearInterval(window.countdownTimer);
-      document.getElementById("countdown").innerHTML = "Times Up!"
-      timeleft = 10;
-    }
-  }, 1000);
-}
-
 async function start(){
       console.log('you wanna play a game?');
       $("hidden-container2").show();
@@ -35,7 +22,6 @@ function listen(){
   if(userScore === 10){
     $("hidden-container2").hide();
     }
-}
   document.getElementById("mainCard").innerHTML = "correct: " + correct;
 }
 
@@ -100,8 +86,6 @@ function updateButtons(question){
     document.getElementById(id).innerHTML=answer;
   });
 }
-const url =
-  "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&type=multiple";
 
 function getQuestion() {
   return fetch(url)
