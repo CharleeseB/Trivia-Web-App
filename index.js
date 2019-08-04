@@ -2,25 +2,34 @@ let correct = 0;
 let incorrect = 0;
 let userScore = correct + incorrect;
 
-document.querySelector("#startGame").addEventListener("click", start);
 
-async function start() {
-  console.log("you wanna play a game?");
-  $("hidden-container2").show();
-  $("header").hide();
-  window.question = await getQuestion();
-  countdownTimer();
-  window.userScore = await setup();
-  updateButtons(window.question);
-  updateQuestion(window.question);
-  document.getElementById("mainCard").innerHTML = "correct: " + correct;
+
+document.querySelector('#startGame').addEventListener('click', start);
+document.querySelector('#endGame').addEventListener('click', newGame);
+async function start(){
+      console.log('you wanna play a game?');
+      $("hidden-container2").show();
+      $("header").hide();
+      window.question = await getQuestion();
+      countdownTimer();
+      window.userScore = await setup();
+      updateButtons(window.question);
+      updateQuestion(window.question);
+      document.getElementById("mainCard").innerHTML = "correct: " + correct;
 }
-function listen() {
-  if (userScore === 10) {
+function newGame(){
+  location.reload();
+}
+
+function listen(){
+  if(userScore === 10){
     $("hidden-container2").hide();
-  }
+    $("aftergame").show();
+    userScoreStore();
+    }
   document.getElementById("mainCard").innerHTML = "correct: " + correct;
 }
+
 
 function countdownTimer() {
   let timeleft = 60;
@@ -29,10 +38,15 @@ function countdownTimer() {
     timeleft -= 1;
     if (timeleft < 0) {
       clearInterval(downloadTimer);
-      document.getElementById("countdown").innerHTML = "Game Over!";
+      $("hidden-container2").hide();
+      $("aftergame").show();
+      userScoreStore();
+      //document.getElementById("countdown").innerHTML = "Game Over!";
     }
+    return timeleft;
   }, 1000);
 }
+
 
 const getSetup = () => {
   const jokeUrl = "https://official-joke-api.appspot.com/random_joke";
@@ -105,6 +119,7 @@ function updateButtons(question) {
     document.getElementById(id).innerHTML = answer;
   });
 }
+
 function updateQuestion(question) {
   document.getElementById("question").innerHTML = question.question;
 }
@@ -121,6 +136,7 @@ function nextQuestion() {
     listen();
   });
 }
+
 
 function clickHandler(e) {
   if (e.srcElement.className !== "answer") return;
@@ -140,19 +156,11 @@ function clickHandler(e) {
     });
     incorrect++;
   }
-
   setTimeout(nextQuestion, 1000);
-
   document.getElementById("mainCard").innerHTML = "correct: " + correct;
   return userScore;
 }
-function setup() {
-  for (let i = 0; i < 4; i++) {
-    document
-      .getElementById("answer-" + i)
-      .addEventListener("click", clickHandler);
-  }
-}
+
 
 const storedPunchline = localStorage.getItem("punchline");
 
@@ -165,3 +173,14 @@ function setup() {
     .querySelector(".question-container")
     .addEventListener("click", clickHandler);
 }
+
+function userScoreStore(){
+  localStorage.setItem("score",correct);
+}
+
+function userScoreGrab(){
+  console.log(userSavedScore)
+}
+setup();
+nextQuestion();
+
