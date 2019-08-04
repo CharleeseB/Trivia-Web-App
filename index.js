@@ -1,8 +1,7 @@
-// const TriviaApp = () => {
-
 let correct = 0;
 let incorrect = 0;
 let userScore = correct + incorrect;
+
 
 
 document.querySelector('#startGame').addEventListener('click', start);
@@ -65,39 +64,14 @@ const getSetup = () => {
         localStorage.parse("punchline");
         const storedPunchline = localStorage.getItem("punchline");
         alert("storedPunchline");
-
-    }
+      };
     });
-  }
-  
-  getSetup();
-
-
-const url = "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&type=multiple";
-
-function getQuestion(){
-  return fetch(url)
-  .then(function(response) {
-    return response.json();
-  }).then(function(returnjson){
-    let question1 = returnjson.results[0];
-    question1.incorrect_answers.push(question1.correct_answer);
-    question1.answers = question1.incorrect_answers;
-    delete question1.incorrect_answers;
-    console.log(question1);
-    return question1;
-  });
 };
 
 getSetup();
 
-
-function updateButtons(question){
-  question.answers.forEach((answer,index)=>{
-    let id = "answer-"+ index;
-    document.getElementById(id).innerHTML=answer;
-  });
-}
+const url =
+  "https://opentdb.com/api.php?amount=1&category=11&difficulty=medium&type=multiple";
 
 function getQuestion() {
   return fetch(url)
@@ -107,10 +81,36 @@ function getQuestion() {
     .then(function(returnjson) {
       let question1 = returnjson.results[0];
       question1.incorrect_answers.push(question1.correct_answer);
-      question1.answers = question1.incorrect_answers;
+      question1.answers = shuffle(question1.incorrect_answers);
       delete question1.incorrect_answers;
+      console.log(question1);
       return question1;
     });
+}
+function shuffle(array) {
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
+// getSetup();
+
+function updateButtons(question) {
+  question.answers.forEach((answer, index) => {
+    let id = "answer-" + index;
+    document.getElementById(id).innerHTML = answer;
+  });
 }
 
 function updateButtons(question) {
@@ -121,7 +121,7 @@ function updateButtons(question) {
 }
 
 function updateQuestion(question) {
-  document.getElementById("question").innerHTML = window.question.question;
+  document.getElementById("question").innerHTML = question.question;
 }
 
 function nextQuestion() {
@@ -131,69 +131,42 @@ function nextQuestion() {
       box.style.backgroundColor = "black";
     });
     question = response;
-    updateButtons(response)
-    updateQuestion(response)
+    updateButtons(response);
+    updateQuestion(response);
     listen();
   });
 }
 
 
-
-function clickHandler(e){
+function clickHandler(e) {
+  if (e.srcElement.className !== "answer") return;
   userScore = correct + incorrect;
-  const answerSelected = e.srcElement.innerHTML; 
-  if (answerSelected === question.correct_answer){
-    document.getElementById("answer-3").style.backgroundColor = "green";
-    correct ++;
-  }
-  else{
-    incorrect ++ ;
-    document.getElementById("answer-0").style.backgroundColor = "red";
-    document.getElementById("answer-1").style.backgroundColor = "red";
-    document.getElementById("answer-2").style.backgroundColor = "red";
-    document.getElementById("answer-3").style.backgroundColor = "green";
+  const answerSelected = e.srcElement.innerHTML;
+  if (answerSelected === question.correct_answer) {
+    e.srcElement.style.backgroundColor = "green";
+    correct++;
+  } else {
+    let search = document.querySelectorAll(".answer");
+    search.forEach(box => {
+      if (box.innerHTML === question.correct_answer) {
+        box.style.backgroundColor = "green";
+      } else {
+        box.style.backgroundColor = "red";
+      }
+    });
+    incorrect++;
   }
   setTimeout(nextQuestion, 1000);
-
-  function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-  
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-  
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-    return array;
-  }
-  const orderArray = [0,-1,-2,-3]
-  const shuffleOrder = shuffle(orderArray)
-  
-  const answerButtons = document.querySelectorAll('.answer')
-  answerButtons.forEach(bttn => {
-    bttn.style.order = shuffleOrder[0];
-    shuffleOrder.shift();
-  })
   document.getElementById("mainCard").innerHTML = "correct: " + correct;
   return userScore;
 }
-function setup(){
-    for (let i = 0; i<4;i++){
-      document.getElementById("answer-"+ i).addEventListener("click", clickHandler)
-    }
-  }
 
-  const storedPunchline = localStorage.getItem("punchline");
 
-  function getPunchline(){
-    return jsonPunchline;
-  }
+const storedPunchline = localStorage.getItem("punchline");
+
+function getPunchline() {
+  return jsonPunchline;
+}
 
 function setup() {
   document
@@ -210,6 +183,4 @@ function userScoreGrab(){
 }
 setup();
 nextQuestion();
-
-
 
