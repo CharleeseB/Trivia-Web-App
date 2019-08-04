@@ -1,218 +1,233 @@
-h1{
-    text-align: center;
-    font-size: 36px;
-    color: black;
+h1 {
+  text-align: center;
+  font-size: 36px;
+  color: black;
 }
-p{
-    align-content: center;
-    text-align: center;
-    font-size: 24px;
-    color: black;
+p {
+  align-content: center;
+  text-align: center;
+  font-size: 24px;
+  color: black;
 }
 .pic-container {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    /* margin: 0px auto; */
-    background-color:slategray;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 1rem;
-    flex-wrap: wrap;
-    height: 7.5%;
-    box-shadow: 5px 10px 18px #888888;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  /* margin: 0px auto; */
+  background-color: slategray;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 1rem;
+  flex-wrap: wrap;
+  height: 7.5%;
+  box-shadow: 5px 10px 18px #888888;
 }
-hidden-container2{
-    display: none;
-    background:
-            linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
-            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
-            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
-}  
-.startsection{
-    height: 300px;
+hidden-container2 {
+  display: none;
+  background: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
 }
-.start-container{
-    display: flex;
-    background-color: yellow;
-    background: url("photos/camera.jpg");
-    width: 1500px;
-    height: 750px;
-    /* background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); */
-    }
-#title{
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: 200px;
-    left: 45%;  
-    font-size: 30px;
-    color: steelblue;
-    border: 2px solid slategrey;
-    box-shadow: 5px 10px 18px #888888;
+.startsection {
+  height: 300px;
+}
+.start-container {
+  display: flex;
+  background-color: yellow;
+  background: url("photos/camera.jpg");
+  width: 1500px;
+  height: 750px;
+  /* background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); */
+}
+#title {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 200px;
+  left: 45%;
+  font-size: 30px;
+  color: whitesmoke;
 
+  box-shadow: 5px 10px 18px #888888;
 }
-#startGame{
-    position: absolute;
-    top: 250px;
-    left: 50%; 
-    text-align:center;
-    justify-items: center;
-    font-size: 30px;
-    color: steelblue;
-    border: 2px solid slategrey;
-    -moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
-	-webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
-	box-shadow:inset 0px 1px 3px 0px #91b8b3;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
-	background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
-	background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
-	background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
-	background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
-	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
-	background-color:#768d87;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	border-radius:5px;
-	border:1px solid #566963;
-	display:inline-block;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:11px 23px;
-	text-decoration:none;
-	text-shadow:0px -1px 0px #2b665e;
+#startGame {
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  text-align: center;
+  justify-items: center;
+  font-size: 30px;
+  color: steelblue;
+  border: 2px solid slategrey;
+  -moz-box-shadow: inset 0px 1px 3px 0px #91b8b3;
+  -webkit-box-shadow: inset 0px 1px 3px 0px #91b8b3;
+  box-shadow: inset 0px 1px 3px 0px #91b8b3;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.05, #768d87),
+    color-stop(1, #6c7c7c)
+  );
+  background: -moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+  background: -webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+  background: -o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+  background: -ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+  background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+  background-color: #768d87;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #566963;
+  display: inline-block;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 11px 23px;
+  text-decoration: none;
+  text-shadow: 0px -1px 0px #2b665e;
 }
-.startGame:hover{  
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
-    background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-    background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-    background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-    background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
-    background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
-    background-color:#6c7c7c;
-    }
+.startGame:hover {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.05, #6c7c7c),
+    color-stop(1, #768d87)
+  );
+  background: -moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+  background: -webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+  background: -o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+  background: -ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+  background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+  background-color: #6c7c7c;
+}
 
 .startGame:active {
-    position: absolute;;
-    top: 251px;
-    }
-
-#countdown{
-    font-size: 20px;
-    display: inline-block;
-    margin: 0 auto;
-}
-body{
-    background-color: black;
+  position: absolute;
+  top: 251px;
 }
 
-.timer{
-    position: relative;
-    top: -20px;
-    border: 2px solid;
-    border-radius: 100px;
-    background-color:burlywood;
-    font-size: 25px;
-    height: 10px ;
-    width: 150px;
-    left: 12.5%;
-    padding: 20px;
-    text-align: center;
-    word-wrap: break-word;
+#countdown {
+  font-size: 20px;
+  display: inline-block;
+  margin: 0 auto;
 }
-#mainCard{
-    border-radius: 100px;
-    top: -74px;
-    position: relative;
-    text-align: center;
-    align-content: center;
-    word-wrap: break-word;
-    border: 2px solid;
-    word-wrap: break-word;
-    background-color: burlywood;
-    font-size: 25px;
-    height: 10px ;
-    width: 150px;
-    left: 22.5%;
-    padding: 20px;
-    margin: 0 auto;
+body {
+  background-color: black;
 }
 
-aside{
-    position: relative;
-    top: 100px;
-    height: 10px;
-    width: 100%;
-    background-color: slategrey;
-    padding: 30px;
-    box-shadow: 5px 10px 18px #888888;
-    text-align: center;
-    align-items: center;
+.timer {
+  position: relative;
+  top: -20px;
+  border: 2px solid;
+  border-radius: 100px;
+  background-color: burlywood;
+  font-size: 25px;
+  height: 10px;
+  width: 150px;
+  left: 12.5%;
+  padding: 20px;
+  text-align: center;
+  word-wrap: break-word;
 }
-.pic-box{
-    margin-right: 2px;
-    align-items: center;
+#mainCard {
+  border-radius: 100px;
+  top: -74px;
+  position: relative;
+  text-align: center;
+  align-content: center;
+  word-wrap: break-word;
+  border: 2px solid;
+  word-wrap: break-word;
+  background-color: burlywood;
+  font-size: 25px;
+  height: 10px;
+  width: 150px;
+  left: 22.5%;
+  padding: 20px;
+  margin: 0 auto;
 }
-.question{
-    position: relative;
-    top: 125px;
-    border: 10px solid black;
-    background-color: slategray;
-    border-width: 0px;
-    height: 75px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: fantasy;
-    font-size: 35px;
-    overflow: auto;
-    justify-content: space-evenly;
-    font-style: italic;
-    font-family: fantasy;
-    font-size: 150%;
-    overflow: auto;
-    text-align: center;
-    justify-content: center;
-    border-radius: 5px;
-    word-wrap: break-word;
-    border-style: 5px outset black;
-}
-.question-container{
-    position: relative;
-    top: 140px;
-    background-color:slategray;
-    height:350px;
-    word-wrap: break-word;
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-    border-radius: 4px;
-    border-style: 5px outset black;
-    box-shadow: 5px 10px 18px #888888;
 
+aside {
+  position: relative;
+  top: 100px;
+  height: 10px;
+  width: 100%;
+  background-color: slategrey;
+  padding: 30px;
+  box-shadow: 5px 10px 18px #888888;
+  text-align: center;
+  align-items: center;
 }
-.answer{
-    display: flex;
-    justify-content: space-around;
-    background-color: black;
-    color: burlywood;
-    height: 20px;
-    top: 30px;
-    width: 30%;
-    height: 30%;
-    padding: 25px;
-    padding-top: 30px; 
-    padding-bottom: 25px; 
-    border-radius: 12px;
-    align-items: center;
-    border-style: 5px outset black;
+.pic-box {
+  margin-right: 2px;
+  align-items: center;
+}
+.question {
+  position: relative;
+  top: 125px;
+  border: 10px solid black;
+  background-color: slategray;
+  border-width: 0px;
+  height: 75px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: fantasy;
+  font-size: 35px;
+  overflow: auto;
+  justify-content: space-evenly;
+  font-style: italic;
+  font-family: fantasy;
+  font-size: 150%;
+  overflow: auto;
+  text-align: center;
+  justify-content: center;
+  border-radius: 5px;
+  word-wrap: break-word;
+  border-style: 5px outset black;
+}
+.question-container {
+  position: relative;
+  top: 140px;
+  background-color: slategray;
+  height: 350px;
+  word-wrap: break-word;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  border-radius: 4px;
+  border-style: 5px outset black;
+  box-shadow: 5px 10px 18px #888888;
+  cursor: pointer;
+}
+.answer {
+  display: flex;
+  justify-content: space-around;
+  background-color: black;
+  color: burlywood;
+  height: 20px;
+  top: 30px;
+  width: 30%;
+  height: 30%;
+  padding: 25px;
+  padding-top: 30px;
+  padding-bottom: 25px;
+  border-radius: 12px;
+  align-items: center;
+  border-style: 5px outset black;
+  cursor: pointer;
 }
