@@ -6,7 +6,7 @@ let userScore = correct + incorrect;
 
 
 document.querySelector('#startGame').addEventListener('click', start);
-
+document.querySelector('#endGame').addEventListener('click', newGame);
 async function start(){
       console.log('you wanna play a game?');
       $("hidden-container2").show();
@@ -17,13 +17,20 @@ async function start(){
       updateButtons(window.question);
       updateQuestion(window.question);
       document.getElementById("mainCard").innerHTML = "correct: " + correct;
-};
+}
+function newGame(){
+  location.reload();
+}
+
 function listen(){
   if(userScore === 10){
     $("hidden-container2").hide();
+    $("aftergame").show();
+    userScoreStore();
     }
   document.getElementById("mainCard").innerHTML = "correct: " + correct;
 }
+
 
 function countdownTimer() {
   let timeleft = 60;
@@ -32,10 +39,15 @@ function countdownTimer() {
     timeleft -= 1;
     if (timeleft < 0) {
       clearInterval(downloadTimer);
-      document.getElementById("countdown").innerHTML = "Game Over!";
+      $("hidden-container2").hide();
+      $("aftergame").show();
+      userScoreStore();
+      //document.getElementById("countdown").innerHTML = "Game Over!";
     }
+    return timeleft;
   }, 1000);
 }
+
 
 const getSetup = () => {
   const jokeUrl = "https://official-joke-api.appspot.com/random_joke";
@@ -107,10 +119,7 @@ function updateButtons(question) {
     document.getElementById(id).innerHTML = answer;
   });
 }
-document.getElementById("answer-3").style.order = "0";
-document.getElementById("answer-0").style.order = "1";
-document.getElementById("answer-1").style.order = "-1";
-document.getElementById("answer-2").style.order = "2";
+
 function updateQuestion(question) {
   document.getElementById("question").innerHTML = window.question.question;
 }
@@ -129,13 +138,13 @@ function nextQuestion() {
 }
 
 
+
 function clickHandler(e){
   userScore = correct + incorrect;
   const answerSelected = e.srcElement.innerHTML; 
   if (answerSelected === question.correct_answer){
     document.getElementById("answer-3").style.backgroundColor = "green";
     correct ++;
-//     nextQuestion();
   }
   else{
     incorrect ++ ;
@@ -143,9 +152,34 @@ function clickHandler(e){
     document.getElementById("answer-1").style.backgroundColor = "red";
     document.getElementById("answer-2").style.backgroundColor = "red";
     document.getElementById("answer-3").style.backgroundColor = "green";
-//     nextQuestion();
   }
   setTimeout(nextQuestion, 1000);
+
+  function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
+  const orderArray = [0,-1,-2,-3]
+  const shuffleOrder = shuffle(orderArray)
+  
+  const answerButtons = document.querySelectorAll('.answer')
+  answerButtons.forEach(bttn => {
+    bttn.style.order = shuffleOrder[0];
+    shuffleOrder.shift();
+  })
   document.getElementById("mainCard").innerHTML = "correct: " + correct;
   return userScore;
 }
@@ -167,7 +201,15 @@ function setup() {
     .addEventListener("click", clickHandler);
 }
 
+function userScoreStore(){
+  localStorage.setItem("score",correct);
+}
+
+function userScoreGrab(){
+  console.log(userSavedScore)
+}
 setup();
 nextQuestion();
+
 
 
