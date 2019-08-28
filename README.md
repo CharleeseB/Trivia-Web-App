@@ -21,7 +21,7 @@ Web app utilizing api's that allows user to take part in a trivia game. User can
 ## Single Player Mode
 
 * Player GamePlay.  
-<img src="https://giphy.com/gifs/VDMhhnG7pG5dG3Ysss/html5" width="100%" height="100%" />
+<img src="https://media.giphy.com/media/VDMhhnG7pG5dG3Ysss/giphy.gif" width="100%" height="100%" />
 
 
 ## Obstacles and Challenges 
